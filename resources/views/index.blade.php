@@ -37,17 +37,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<a class="cd-nav-trigger" href="#0"> Menu <span aria-hidden="true"></span> </a>
 					<ul>
 						<li><a href="#home" class="scroll"><span>Home</span></a></li>
-						<li><a href="#about" class="scroll"><span>About</span></a></li>
-						<li><a href="#experiences" class="scroll"><span>Experiences</span></a></li>
-						<li><a href="#skills" class="scroll"><span>Skills</span></a></li> 
-						<li><a href="#projects" class="scroll"><span>Projects</span></a></li>
-						<li><a href="#contact" class="scroll"><span>Contact</span></a></li>
+						<li><a href="#about" class="scroll"><span>Tentang Saya</span></a></li>
+						<li><a href="#experiences" class="scroll"><span>Pengalaman</span></a></li>
+						<li><a href="#skills" class="scroll"><span>Keahlian</span></a></li> 
+						<li><a href="#projects" class="scroll"><span>Proyek</span></a></li>
+						<li><a href="#contact" class="scroll"><span>Kontak</span></a></li>
 					</ul> 
 					<span aria-hidden="true" class="stretchy-nav-bg"></span>
 				</nav> 
 			</div>
 		
-		<div class="w3-banner-grids">
+		<div class="w3-banner-grids" id="home">
 			<div class="col-md-6 w3-banner-grid-left">
 				<div class="w3-banner-img">
 					<img src="image/foto_profil/{{$profils->foto}}" alt="img">
@@ -77,26 +77,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li>
 									<ul class="agileits-address-text">
 										<li class="agile-it-adress-left"><b>ALAMAT</b></li>
-										<li><span>:</span>Pulorejo, Mojokerto</li>
+										<li><span>:</span>{{$profils->alamat}}</li>
 									</ul>
 								</li>
 								<li>
 									<ul class="agileits-address-text">
 										<li class="agile-it-adress-left"><b>E-MAIL</b></li>
-										<li><span>:</span><a href="mailto:example@mail.com"> ahmad.19017@mhs.unesa.ac.id</a></li>
+										<li><span>:</span><a href="mailto:example@mail.com">{{$profils->email}}</a></li>
 									</ul>
 								</li>
+								@foreach($sosial_medias as $sosial_media)
 								<li>
 									<ul class="agileits-address-text">
-										<li class="agile-it-adress-left"><b>WEBSITE</b></li>
-										<li><span>:</span><a href="#">www.knowfigo.com</a></li>
-									</ul>
-								</li>
-								@foreach($sosialMedias as $sosialMedia)
-								<li>
-									<ul class="agileits-address-text">
-										<li class="agile-it-adress-left"><b>{{$sosialMedia->jenis_sosial_media}}</b></li>
-										<li><span>:</span><a href="{{$sosialMedia->url_sosial_media}}" target="_blank"> {{$sosialMedia->nama_sosial_media}}</a></li>
+										<li class="agile-it-adress-left"><b>{{$sosial_media->jenis_sosial_media}}</b></li>
+										<li><span>:</span><a href="{{$sosial_media->url_sosial_media}}" target="_blank"> {{$sosial_media->nama_sosial_media}}</a></li>
 									</ul>
 								</li>
 								@endforeach
@@ -120,48 +114,38 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="w3-about" id="about">
 	<div class="container">
 		<div class="w3-about-head">
-			<h3>About me</h3>
+			<h3>Tentang Saya</h3>
 		</div>
 		<div class="w3-about-grids">
-		<div class=" w3-about-grids1">
+			<?php $i=0 ?>
+			@foreach($sosial_medias->tentang_sayas as $tentang_saya)
+			<?php  $i++ ?>
+			@if($i%2==1)
+			<div class=" w3-about-grids1">
 				<div class="col-md-6 w3-about-grid-left1">
-					<img src="images/ab5.jpg" alt="img1">
+					<img src="image/image_tentang_saya/{{$tentang_saya->image_tentang_saya}}" alt="img1">
 				</div>
 				<div class="col-md-6 w3-about-grid-right1">
-					<h3>Aliquam euismod at turpis eu egestas</h3>
-					<p> Nullam pulvinar nunc eget tortor elementum, sed vehicula massa vestibulum. Aenean gravida arcu viverra nisl euismod laoreet. Fusce accumsan vel arcu at tincidunt. Nulla non nulla ultrices, pharetra orci in, varius nunc.</p>
-					<h5>Lorem ipsum dolor sit amet, consectetur adipisci ask</h5>
-					<div class= "w3-about-grid-small-border">
-					<div class="col-md-4 w3-about-grid-small">
-						<h3 class="w3-head-project">20</h3>
-						<h5>web projects</h5>
-					</div>
-					<div class="col-md-4 w3-about-grid-small">
-					<h3 class="w3-head-project">30</h3>
-						<h5>php projects</h5>
-					</div>
-					<div class="col-md-4 w3-about-grid-small">
-						<h3 class="w3-head-project">50</h3>
-						<h5>java projects</h5>
-						<div class="clearfix"></div>
-					</div>
+					<h3>{{$tentang_saya->judul_tentang_saya}}</h3>
+					<p>{{$tentang_saya->deskripsi_tentang_saya}}</p>
 				<div class="clearfix"></div>
 				</div>
-				</div>
-				<div class="clearfix"></div>
-				<div class="w3-about-grids2">
+			</div>
+			<div class="clearfix"></div>
+			@else
+			<div class="w3-about-grids2">
 				<div class="col-md-6 w3-about-grid-left2">
-					<h3>Pellentesque sit amet ex at nisl posuere</h3>
-					<p> Nullam pulvinar nunc eget tortor elementum, sed vehicula massa vestibulum. Aenean gravida arcu viverra nisl euismod laoreet. Fusce accumsan vel arcu at tincidunt. Nulla non nulla ultrices, pharetra orci in, varius nunc.</p>
-					<h4><a href="#">Readmore</a></h4>
-		
+					<h3>{{$tentang_saya->judul_tentang_saya}}</h3>
+					<p>{{$tentang_saya->deskripsi_tentang_saya}}</p>
 				</div>
 				<div class="col-md-6 w3-about-grid-right2">
-				<img src="images/ab7.jpg" alt="img1">
+				<img src="image/image_tentang_saya/{{$tentang_saya->image_tentang_saya}}" alt="img1">
 		
 				</div>
 				<div class="clearfix"></div>
-				</div>
+			</div>
+			@endif
+			@endforeach
 		</div>
 	</div>
 </div>
@@ -175,72 +159,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="w3-edu-grid-header">
 				<h3>Pengalaman</h3>
 				</div>
+			@foreach($sosial_medias->pengalamans as $pengalaman)
 				<div class="col-md-4 w3-edu-info1">
-					<h3>2017</h3>
-					<h4>web developer</h4>
-			</div>
+					<h3>{{$pengalaman->tahun_pengalaman}}</h3>
+					<h4>{{$pengalaman->pekerjaan_pengalaman}}</h4>
+				</div>
 			<div class="col-md-6 w3-edu-info2">
-				<h3>Ati software solution</h3>
-					<h4><i class="fa fa-users" aria-hidden="true"></i><span>Team leader</span></h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt a purus et vulputate </p>
+				<h3>{{$pengalaman->tempat_pengalaman}}</h3>
+					<h4><i class="fa fa-users" aria-hidden="true"></i><span>{{$pengalaman->tempat_pengalaman}}</span></h4>
+					<p>{{$pengalaman->deskripsi_pengalaman}}</p>
 			</div>
 			<div class="clearfix"></div>
-			<div class="col-md-4 w3-edu-info1">
-			<h3>2015</h3>
-					<h4>php developer</h4>
-					
-			</div>
-			<div class="col-md-6 w3-edu-info2">
-				<h3>Tcs software solution</h3>
-					<h4><i class="fa fa-code" aria-hidden="true"></i><span>programmer</span></h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt a purus et vulputate</p>
-			</div>
-			<div class="clearfix"></div>
-			<div class="col-md-4 w3-edu-info1">
-			<h3>2014</h3>
-					<h4>Graphic designer</h4>
-					
-			</div>
-			<div class="col-md-6 w3-edu-info2">
-				<h3>Ntt software solution</h3>
-					<h4><i class="fa fa-laptop" aria-hidden="true"></i><span>trainer</span></h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt a purus et vulputate</p>
-			
-			</div>
-			<div class="clearfix"></div>		
+			@endforeach
 			</div>
 			<div class="col-md-6 w3-edu-grid-right">
 			<div class="w3-edu-grid-header">
-			<h3>Education</h3>
+				<h3>Pendidikan</h3>
 			</div>
-				<div class="col-md-3 w3-edu-info-right1">
-					<h3>2009</h3>
+			@foreach($sosial_medias->pendidikans as $pendidikan)
+			<div class="col-md-3 w3-edu-info-right1">
+				<h3>{{$pendidikan->tahun_pendidikan}}</h3>
 			</div>
 			<div class="col-md-9 w3-edu-info-right2">
-				<h3>iit kharagpur delhi</h3>
-					<h4>Computer science</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt a purus et vulputate Donec tincidunt a purus et vulputate</p>
+				<h3>{{$pendidikan->tempat_pendidikan}}</h3>
+					<h4>{{$pendidikan->jurusan_pendidikan}}</h4>
+					<p>{{$pendidikan->deskripsi_pendidikan}}</p>
 			</div>
 			<div class="clearfix"></div>
-			<div class="col-md-3 w3-edu-info-right1">
-				<h3>2006</h3>
-			</div>
-			<div class="col-md-9 w3-edu-info-right2">
-				<h3>Board of intermediate</h3>
-					<h4>mathametics </h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt a purus et vulputate Donec tincidunt a purus et vulputate</p>
-			</div>
-			<div class="clearfix"></div>
-			<div class="col-md-3 w3-edu-info-right1">
-			<h3>2004</h3>
-			</div>
-			<div class="col-md-9 w3-edu-info-right2">
-				<h3>international school</h3>
-					<h4>iit certified</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt a purus et vulputate Donec tincidunt a purus et vulputate</p>
-			
-			</div>
-			<div class="clearfix"></div>		
+			@endforeach
 		</div>
 		<div class="clearfix"></div>	
 	</div>
@@ -259,7 +205,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<section class='wrap'>
 					<div class='wrap_right'>
 					  <div class='bar_group' max="100">
-					  	@foreach($sosialMedias->keahlians as $keahlian)
+					  	@foreach($sosial_medias->keahlians as $keahlian)
 						<div class='bar_group__bar thin' label='{{$keahlian->nama_keahlian}}' show_values='true' unit ="%" tooltip='true' value='{{$keahlian->nilai_keahlian}}'></div>
 						@endforeach
 					</div>
@@ -279,23 +225,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<!-- gallery -->
 	<div class="gallery" id="projects">
 		<div class="w3-gallery-head">
-			<h3>My projects</h3>
+			<h3>Proyek Saya</h3>
 		</div>
 	<div class="container">
 		<div class="gallery_gds">
 			  
             <div class="filtr-container " style="padding: 0px; position: relative; height: 858px;">
+            	<?php  $i=0 ?>
+            	@foreach($sosial_medias->proyeks as $proyek)
+            	<?php  $i++ ?>
 				<div class="col-md-4 col-ms-6 jm-item first filtr-item" data-category="1, 5" data-sort="Busy streets" style="opacity: 1; transform: scale(1) translate3d(0px, 0px, 0px); backface-visibility: hidden; perspective: 1000px; transform-style: preserve-3d; position: absolute; transition: all 0.5s ease-out 0ms;">
 					<div class="jm-item-wrapper">
 						<div class="jm-item-image">
-							<img src="images/g1.jpg" alt="property" />
+							<img src="image/image_proyek/{{$proyek->image_proyek}}" alt="property" />
 							<span class="jm-item-overlay"> </span>
-							<div class="jm-item-button"><a href="#"  data-toggle="modal" data-target="#myModal1">View Details</a></div>
+							<div class="jm-item-button"><a href="#"  data-toggle="modal" data-target="#myModal{{$i}}">Lihat Detail</a></div>
 						</div>	
 						
 					</div>
 				</div>
                <div class="clearfix"> </div>
+               @endforeach
             </div>
 		</div>
 	</div>	
@@ -303,8 +253,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!--//gallery-->
 	</div>
 <!-- //main-content -->
-					 
-<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" >
+					<?php  $i=0 ?>
+            	@foreach($sosial_medias->proyeks as $proyek)
+            	<?php  $i++ ?> 
+<div class="modal fade" id="myModal{{$i}}" tabindex="-1" role="dialog" >
 				<div class="modal-dialog">
 							<!-- Modal content-->
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -314,8 +266,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					
 						<div class="ins-details">
 							<div class="ins-name">
-								<h3>voluptatem accusantium doloremque</h3>
-								<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo</p>
+								<h3>{{$proyek->judul_proyek}}</h3>
+								<p>{{$proyek->deskripsi_proyek}}</p>
 								
 							</div>
 							
@@ -323,7 +275,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="clearfix"></div>			
 			     </div>
 	</div>
-					 
+			@endforeach		 
 		 					
  <script src="{{asset('js/jquery.filterizr.js')}}"></script>
     
@@ -339,7 +291,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	 <div class="contact" id="contact">
 	<div class="container">
 		<div class="w3ls-heading">
-			<h3>Contact me</h3>
+			<h3>Hubungi Saya</h3>
 		</div>
 			<div class="contact-w3ls">
 				<form action="#" method="post">
@@ -372,8 +324,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<i class="fa fa-map-marker" aria-hidden="true"></i>
 						</div>
 						<div class="w3ls_footer_grid_leftr">
-							<h4>Location</h4>
-							<p>3030 New York, NY, USA</p>
+							<h4>Lokasi</h4>
+							<p>{{$profils->alamat}}</p>
 						</div>
 						<div class="clearfix"> </div>
 					</div>
@@ -383,7 +335,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						<div class="w3ls_footer_grid_leftr">
 							<h4>Email</h4>
-							<a href="mailto:info@example.com">info@example.com</a>
+							<a href="mailto:{{$profils->email}}">{{$profils->email}}</a>
 						</div>
 						<div class="clearfix"> </div>
 					</div>
@@ -392,8 +344,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<i class="fa fa-phone" aria-hidden="true"></i>
 						</div>
 						<div class="w3ls_footer_grid_leftr">
-							<h4>Call Me</h4>
-							<p>(+000) 003 003 0052</p>
+							<h4>Hubungi Sata</h4>
+							<p>{{$profils->nomor_telepon}}</p>
 						</div>
 						<div class="clearfix"> </div>
 					</div>
@@ -402,7 +354,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 		<div class="w3l_footer_pos">
-			<p>© 2017 C-Resume. All Rights Reserved | Design by <a href="https://w3layouts.com/">W3layouts</a></p>
+			<p>© 2021 Ahmad Figo Alfarqi</p>
 		</div>
 	</div>
 <!-- //footer -->
